@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-db
+  template:
+    metadata:
+      labels:
+        app: users-db
+    spec:
+      containers:
+        - image: lorenzogl/users-db:GIT_SHA_SECRET
+          imagePullPolicy: Always
+          name: users-db
+          env:
+            - name: ENV_VAR_1
+              value: ENV_VAR_1_VALUE
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-db
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: "users-db"
+      port: 9000
+      targetPort: 9000
+  selector:
+    app: users-db
