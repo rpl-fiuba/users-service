@@ -2,7 +2,7 @@ module.exports = {
   app: {
     protocol: 'http',
     hostname: 'localhost',
-    port: process.env.PORT || '7001'
+    port: process.env.PORT || '7000'
   },
   db: {
     client: 'pg',

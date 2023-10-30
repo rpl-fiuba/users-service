@@ -7,7 +7,7 @@ module.exports = {
   app: {
     protocol: 'http',
     hostname: 'localhost',
-    port: '7001'
+    port: '7000'
   },
   db: {
     client: 'pg',
