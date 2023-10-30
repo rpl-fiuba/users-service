@@ -19,6 +19,14 @@ spec:
           env:
             - name: ENV_VAR_1
               value: ENV_VAR_1_VALUE
+            - name: DB_HOST
+              value: users-db
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DATABASE
+              value: users_service
 
 ---
 apiVersion: v1
