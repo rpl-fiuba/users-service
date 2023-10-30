@@ -1,21 +1,27 @@
-const bluebird = require('bluebird');
 const createError = require('http-errors');
 const { google } = require('googleapis');
+const config = require('../config.js');
 
 const { OAuth2 } = google.auth;
-const userinfo = bluebird.promisifyAll(google.oauth2('v2').userinfo);
 
 const authenticate = async ({ context }) => {
   const { token } = context;
   const oauth2Client = new OAuth2();
-  oauth2Client.setCredentials({ access_token: token });
+
 
   try {
-    const response = await userinfo.getAsync({ auth: oauth2Client });
-    return response.data;
+    const response = await oauth2Client.verifyIdToken({
+      idToken: token,
+      audience: config().google.client_id
+    });
+    return {
+      email: response.payload.email,
+      id: response.payload.sub,
+      picture: response.payload.picture
+    };
   } catch (err) {
     const message = (err.errors && err.errors[0] && err.errors[0].message)
-      || err.response.statusText;
+      || (err.response && err.response.statusText) || 'Unknown error';
     return Promise.reject(createError(parseInt(err.code, 10), message));
   }
 };
