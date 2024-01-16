@@ -25,7 +25,16 @@ app.use(bodyParser.json());
 app.use(requestLoggerMiddleware);
 
 // Routes
-router.get('/ping', (req, res) => statusController.ping(req, res));
+router.get('/ping', (req, res) => {
+  console.log('Got call on /ping, will call ping controller');
+  return statusController.ping(req, res);
+});
+
+router.get('/users-service/ping', (req, res) => {
+  console.log('Got call on users-service/ping, will call ping controller');
+  return statusController.ping(req, res);
+});
+
 
 router.use(initialMiddleware);
 router.use(authMiddleware);
