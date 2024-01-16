@@ -35,6 +35,22 @@ router.get('/users-service/ping', (req, res) => {
   return statusController.ping(req, res);
 });
 
+router.get('/users-service', (req, res) => {
+  console.log('Got call on /users-service, will call ping controller');
+  return statusController.ping(req, res);
+});
+
+router.get('/users-service/', (req, res) => {
+  console.log('Got call on /users-service, will call ping controller');
+  return statusController.ping(req, res);
+});
+
+
+router.get('/', (req, res) => {
+  console.log('Got call on /, will call ping controller');
+  return statusController.ping(req, res);
+});
+
 
 router.use(initialMiddleware);
 router.use(authMiddleware);
