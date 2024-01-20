@@ -1,4 +1,4 @@
-name: Publish Database Docker Image + Deploy to Okteto
+name: (DB) Publish Database Docker Image + Deploy to Okteto
 on:
   push:
     paths:
@@ -8,7 +8,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: autopilot-cluster-1    # cluster name
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER_NAME }}    # cluster name
   GKE_ZONE: us-central1               # cluster zone
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
           tags: ${{ github.sha }}
           dockerfile: Dockerfile-db
 
-  push-db-okteto-pipeline:
+  push-db-gke-pipeline:
     needs: publish-docker-image-database
     runs-on: ubuntu-latest
     steps:
@@ -41,12 +41,6 @@ jobs:
           sed "s|MONGO_URL_PLACEHOLDER|$MONGO_FULL_URL_SECRET|" kubernetes-templates/users-database.yml | sed "s|GIT_SHA_SECRET|$GIT_SHA_SECRET|" > kubernetes/users-database.yml
           echo "cat kubernetes/users-database.yml"
           cat kubernetes/users-database.yml
-
-          echo "ls -a ."
-          ls -a .
-
-          echo "ls -a ${{ github.workspace }}"
-          ls -a ${{ github.workspace }}
         shell: bash
 
 
