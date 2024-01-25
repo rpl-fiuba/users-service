@@ -20,6 +20,6 @@ module.exports = {
     }
   },
   google: {
-    client_id: '335642806033-84755oo8q5bgurnq79rtog88njbatobd.apps.googleusercontent.com'
+    client_id: '1065733320727-893uf4dhps0dr2nrui3l1sdkidq321l7.apps.googleusercontent.com'
   }
 };
