@@ -2,6 +2,8 @@ const createError = require('http-errors');
 
 const { processDbResponse, snakelize } = require('../utils/dbUtils');
 const configs = require('../config')();
+
+console.log('Config db is ', configs.db.connection.host, configs.db.connection.user, configs.db.connection.password, configs.db.connection.database);
 const knex = require('knex')(configs.db); // eslint-disable-line
 
 /**
