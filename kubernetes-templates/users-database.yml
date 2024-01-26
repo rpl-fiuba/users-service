@@ -31,7 +31,7 @@ spec:
   type: ClusterIP
   ports:
     - name: "users-db"
-      port: 80
+      port: 5432
       targetPort: 5432
   selector:
     app: users-db
