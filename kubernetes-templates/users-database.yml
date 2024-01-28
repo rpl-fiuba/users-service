@@ -43,8 +43,8 @@ spec:
           imagePullPolicy: Always
           name: users-db
           env:
-            - name: ENV_VAR_1
-              value: ENV_VAR_1_VALUE
+            - name: TEST_ENV_VAR
+              value: TRIGGER_DEPLOY_1
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
           volumeMounts:
