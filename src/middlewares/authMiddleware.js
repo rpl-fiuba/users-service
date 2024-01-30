@@ -14,7 +14,6 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    console.log('Req is', req);
     const profile = await googleClient.authenticate({ context });
     req.context.googleProfile = profile;
     next();
