@@ -5,6 +5,7 @@ const config = require('../config.js');
 const { OAuth2 } = google.auth;
 
 const authenticate = async ({ context }) => {
+  console.log('Context for auth is', context);
   const { token } = context;
   const oauth2Client = new OAuth2();
 
