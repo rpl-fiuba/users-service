@@ -21,7 +21,6 @@ const authenticate = async ({ context }) => {
       picture: response.payload.picture
     };
   } catch (err) {
-    console.log('Got error in googleClient.js', err);
     const message = (err.errors && err.errors[0] && err.errors[0].message)
       || (err.response && err.response.statusText) || 'Unknown error';
     return Promise.reject(createError(parseInt(err.code, 10), message));
