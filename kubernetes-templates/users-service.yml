@@ -67,3 +67,4 @@ spec:
       targetPort: 7000
   selector:
     app: users-service
+    
