@@ -18,6 +18,6 @@ module.exports = async (req, res, next) => {
     req.context.googleProfile = profile;
     next();
   } catch (err) {
-    next(err);
+    next(createError.Unauthorized('Login authorization token is invalid or has expired, please try again with a new token'));
   }
 };
